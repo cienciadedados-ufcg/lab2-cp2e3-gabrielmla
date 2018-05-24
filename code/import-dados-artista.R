@@ -16,13 +16,9 @@ access_token <- get_spotify_access_token()
 # Da maneira como é feito nesse script, você PRECISARÁ RODAR get_artist_audio_features()
 # INTERATIVO, PARA UM ARTISTA POR VEZ, para que o terminal lhe pergunte que artista 
 # exatamente você quer analisar. 
-lua <- get_artist_audio_features('luiz gonzaga') %>% 
-    mutate(artist = "Luiz Gonzaga")
+frank <- get_artist_audio_features('frank ocean') %>% 
+    mutate(artist = "Frank Ocean")
 
-jackson <- get_artist_audio_features('jackson do pandeiro')
-jackson %>% 
-    mutate(artist = "Jackson do Pandeiro") 
-
-jackson %>% 
-    bind_rows(lua) %>% 
-    write_csv(here("data/forro_do_gogó_ao_mocotó.csv"))
+frank %>% 
+    bind_rows(frank) %>% 
+    write_csv(here("data/frank_ocean.csv"))

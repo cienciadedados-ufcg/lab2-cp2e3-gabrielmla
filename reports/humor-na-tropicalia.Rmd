@@ -6,8 +6,8 @@ output: html_notebook
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 library(viridis)
-library(here)
 library(lubridate)
+library(here)
 theme_set(theme_minimal())
 ```
 
