@@ -4,31 +4,45 @@ author: "Gabriel Morais Lúcio de Araújo"
 date: "2018-05-24"
 output: html_document
 ---
+<style type="text/css"> body { font-family: "Roboto", sans-serif; } body, td { font-size: 14px; } h1, h2, h3 { font-weight: bold; } code.r{ font-size: 11px; } </style>
 
 ```{r message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(comment=NA, fig.width=8, fig.align='center', fig.env='marginfigure')
 library(tidyverse)
-library(viridis)
-library(lubridate)
 library(here)
+library(gridExtra)
 theme_set(theme_minimal())
 ```
 
-## R Markdown
+Esta análise, realizada no contexto da disciplina de Análise de Dados 1 (Ciências da Computação | UFCG), é um estudo sobre caractéristicas técnicas sobre músicas dos meus três artistas mais ouvidos de acordo com o meu perfil do [lastFm](https://www.last.fm/pt/user/gabrielmla) atualmente, sendo eles **Frank Ocean**, **Kendrick Lamar** e **Tame Impala**.
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+### Sobre os dados
+Os dados foram obtidos a partir da API do Spotify (mais especificamente as audio_features das músicas de um artista presente na plataforma), utilizando do suporte do pacote `spotifyr` para fazer chamadas a API. Vamos então ver como funcionam os dados retornados pelo Spotify em uma pequena amostra:
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
+```{r message=FALSE}
+frank.ocean <- read_csv(here("data/frankocean.csv"))
+kendrick.lamar <- read_csv(here("data/kendrick_lamar.csv"))
+tame.impala <- read_csv(here("data/tame_impala.csv"))
+top3.lastfm <- read_csv(here("data/top3_last.csv"))
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+data.frank <- subset(frank.ocean, select = -c(album_uri, album_img, album_release_year, track_uri, album_popularity))
+head(data.frank, 5)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Omiti algumas variáveis para uma melhor visualização dos dados. Como podemos ver, temos muitos dados análiticos sobre as músicas, como `danceability` (o quão dancante a música é), `energy` (o quão energética a música é), entre vários outros. Durante as visualizações irei me aprofundar mais nas variáveis utilizadas, mas sinta-se livre para explorá-los nessa tabela.
+
+### Perguntas
+* Como são as emoções dos albúns dos artistas escolhidos?
+    + Existe correlação entre Loudness e Energy nas músicas?
+* Músicas com maior popularidade tendem a uma maior duração de partes cantadas ou maior duração de partes instrumentais?
+    + Músicas com maior popularidade tendem a ter um menor tempo de duração?
+
+### Como são as emoções dos albúns dos artistas escolhidos?
+
+### Existe correlação entre Loudness e Energy nas músicas?
+### Músicas com maior popularidade tendem a uma maior duração de partes cantadas ou maior duração de partes instrumentais?
+### Músicas com maior popularidade tendem a ter um menor tempo de duração?

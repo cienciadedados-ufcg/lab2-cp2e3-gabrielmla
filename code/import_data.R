@@ -59,3 +59,8 @@ nazareno = get_user_audio_features("zananeno")
 nazareno %>% 
     write_csv(here("data/playlists_nazareno.csv"))
 
+frank <- get_artist_audio_features('Frank Ocean') %>% mutate(artist = "Frank Ocean")
+k.dot <- get_artist_audio_features('Kendrick Lamar') %>% mutate(artist = "Kendrick Lamar")
+tame <- get_artist_audio_features('Tame Impala') %>% mutate(artist = "Tame Impala")
+
+bind_rows(frank, k.dot, tame) %>% write_csv(here("data/top3_last.csv"))
