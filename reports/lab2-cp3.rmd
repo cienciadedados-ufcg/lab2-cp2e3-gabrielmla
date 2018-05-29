@@ -45,11 +45,6 @@ Omiti algumas variáveis para uma melhor visualização dos dados. Como podemos 
 Sem mais delongas, vamos para a análise!
 
 ### Como são as emoções dos albúns dos artistas escolhidos?
-```{r}
-p2 <- plot_ly(x = ~kendrick.lamar$valence, y = ~kendrick.lamar$energy) %>% 
-  add_trace(type='histogram2dcontour')
-p2
-```
 
 ```{r}
 contour.top3.s <- subplot(
@@ -65,6 +60,19 @@ contour.top3.plot <- layout(contour.top3.s, showlegend = FALSE)
 contour.top3.plot
 ```
 
+```{r}
+contour.frank.plot <- plot_ly(x = ~frank.ocean$valence, y = ~frank.ocean$energy) %>% 
+  add_trace(type='histogram2dcontour')
+contour.frank.plot
+
+contour.tame.plot <- plot_ly(x = ~tame.impala$valence, y = ~tame.impala$energy) %>% 
+  add_trace(type='histogram2dcontour')
+contour.tame.plot
+
+contour.kendrick.plot <- plot_ly(x = ~kendrick.lamar$valence, y = ~kendrick.lamar$energy) %>% 
+  add_trace(type='histogram2dcontour')
+contour.kendrick.plot
+```
 
 ### Existe correlação entre Loudness e Energy nas músicas?
 ### Músicas com maior popularidade tendem a uma maior duração de partes cantadas ou maior duração de partes instrumentais?
