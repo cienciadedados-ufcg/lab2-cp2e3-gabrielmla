@@ -12,6 +12,7 @@ knitr::opts_chunk$set(comment=NA, fig.width=8, fig.align='center', fig.env='marg
 library(tidyverse)
 library(here)
 library(gridExtra)
+library(plotly)
 theme_set(theme_minimal())
 ```
 
@@ -40,8 +41,30 @@ Omiti algumas variáveis para uma melhor visualização dos dados. Como podemos 
     + Existe correlação entre Loudness e Energy nas músicas?
 * Músicas com maior popularidade tendem a uma maior duração de partes cantadas ou maior duração de partes instrumentais?
     + Músicas com maior popularidade tendem a ter um menor tempo de duração?
+    
+Sem mais delongas, vamos para a análise!
 
 ### Como são as emoções dos albúns dos artistas escolhidos?
+```{r}
+p2 <- plot_ly(x = ~kendrick.lamar$valence, y = ~kendrick.lamar$energy) %>% 
+  add_trace(type='histogram2dcontour')
+p2
+```
+
+```{r}
+contour.top3.s <- subplot(
+  plot_ly(x = top3.lastfm$valence, alpha = 0.6, type = 'histogram'), 
+  plotly_empty(), 
+  plot_ly(x = top3.lastfm$valence, y = top3.lastfm$energy, type = 'histogram2dcontour', showscale = F), 
+  plot_ly(y = top3.lastfm$energy, alpha = 0.6, type = 'histogram'),
+  nrows = 2, heights = c(0.2, 0.8), widths = c(0.8, 0.2), 
+  shareX = TRUE, shareY = TRUE, titleX = FALSE, titleY = FALSE
+)
+
+contour.top3.plot <- layout(contour.top3.s, showlegend = FALSE)
+contour.top3.plot
+```
+
 
 ### Existe correlação entre Loudness e Energy nas músicas?
 ### Músicas com maior popularidade tendem a uma maior duração de partes cantadas ou maior duração de partes instrumentais?
